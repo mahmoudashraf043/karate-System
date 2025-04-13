@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "player")
@@ -33,4 +35,11 @@ public class Player {
 
     @Column(name = "join date")
     private LocalDate joinDate;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
+
+    @ManyToMany(mappedBy = "players")
+    private List<Session> sessions = new ArrayList<>();
 }
