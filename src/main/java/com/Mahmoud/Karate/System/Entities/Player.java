@@ -42,4 +42,7 @@ public class Player {
 
     @ManyToMany(mappedBy = "players")
     private List<Session> sessions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "player" , cascade = CascadeType.ALL)
+    private List<BeltDetails> beltDetails = new ArrayList<>();
 }
