@@ -17,19 +17,18 @@ public class InstructorService {
     private final InstructorRepo instructorRepo;
 
 
+    @Transactional
     public Instructor addInstructor(RegisterDto registerDto) {
 
         if (instructorRepo.existsByUsername(registerDto.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
-        if (instructorRepo.existsByEmail(registerDto.getUsername())) {
+        if (instructorRepo.existsByEmail(registerDto.getEmail())) {
             throw new RuntimeException("Email already in use");
         }
         Instructor instructor = instructorMapper.mapToInstructor(registerDto);
         instructorRepo.save(instructor);
         return instructor;
-
-
 
     }
 
@@ -42,5 +41,12 @@ public class InstructorService {
         }
         return ("the instructor has been deleted successfully");
 
+    }
+
+    @Transactional
+    public String updateInstructor(RegisterDto registerDto){
+        if(instructorRepo.existsByUsername(registerDto.getUsername())){
+
+        }
     }
 }
